@@ -15,7 +15,7 @@ block="server {
 
     location / {
         # try to serve file directly, fallback to front controller
-        try_files $uri /index.php$is_args$args;
+        try_files \$uri /index.php\$is_args\$args;
     }
 
     location = /favicon.ico { access_log off; log_not_found off; }
@@ -33,7 +33,7 @@ block="server {
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
         fastcgi_pass unix:/var/run/php/php7.1-fpm.sock;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
 
         fastcgi_intercept_errors off;
         fastcgi_buffer_size 16k;
